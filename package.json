@@ -1,0 +1,10 @@
+{
+  "name": "ukaypro-business-suite",
+  "version": "1.0.0",
+  "private": true,
+  "description": "UkayPro inventory, live selling, and sales management system.",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "backend": "node backend/src/server.js"
+  }
+}

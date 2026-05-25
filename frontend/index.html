@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UkayPro Inventory System</title>
+    <link rel="stylesheet" href="./src/css/styles.css" />
+  </head>
+  <body>
+    <main id="loginScreen" class="login-screen">
+      <section class="login-art">
+        <div class="brand-mark">UP</div>
+        <h1>UkayPro</h1>
+        <p>Inventory Management for Ukay-Ukay Stores</p>
+        <div class="clothes-rack">
+          <span class="shirt tan"></span>
+          <span class="shirt white"></span>
+          <span class="shirt violet"></span>
+          <span class="shirt purple"></span>
+        </div>
+        <div class="floor-props">
+          <span class="plant"></span>
+          <span class="box"></span>
+        </div>
+      </section>
+
+      <section class="login-card">
+        <form id="loginForm">
+          <div>
+            <h2>Welcome back!</h2>
+            <p>Sign in to continue to your account</p>
+          </div>
+          <label>
+            Email address
+            <input id="loginEmail" type="email" value="admin@ukaypro.com" />
+          </label>
+          <label>
+            Password
+            <input id="loginPassword" type="password" value="admin123" />
+          </label>
+          <p id="loginMessage" class="form-message"></p>
+          <div class="login-helper-row">
+            <label class="remember-option">
+              <input type="checkbox" checked />
+              Remember me
+            </label>
+            <a href="#">Forgot password?</a>
+          </div>
+          <button id="signInButton" type="submit" class="primary-button">Sign In</button>
+          <small class="login-switch">Don't have an account? <a id="openSignup" href="#">Sign up</a></small>
+        </form>
+      </section>
+    </main>
+
+    <main id="appShell" class="app-shell hidden">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <div class="brand-mark">UP</div>
+          <div>
+            <strong>UkayPro</strong>
+            <small>Business Suite</small>
+          </div>
+        </div>
+        <div class="page-account">
+          <span class="account-avatar"></span>
+          <div>
+            <strong class="fb-page-name">Ukay Online Shop</strong>
+            <small class="fb-page-category">Facebook Page</small>
+          </div>
+          <span class="account-caret">v</span>
+        </div>
+        <nav>
+          <button class="nav-item active" data-view="dashboard">Dashboard</button>
+          <button class="nav-item" data-view="liveSelling">Live Selling</button>
+          <button class="nav-item" data-view="posts">Posts / Listings</button>
+          <button class="nav-item" data-view="comments">Comment Monitor</button>
+          <button class="nav-item" data-view="messenger">Messenger</button>
+          <button class="nav-item" data-view="orders">Mines / Orders</button>
+          <button class="nav-item" data-view="inventory">Inventory</button>
+          <button class="nav-item" data-view="invoices">Invoices</button>
+          <button class="nav-item" data-view="reports">Reports</button>
+          <button class="nav-item" data-view="analytics">Analytics</button>
+          <button class="nav-item" data-view="customers">Customers</button>
+          <button class="nav-item" data-view="automation">Automation</button>
+          <button class="nav-item" data-view="settings">Settings</button>
+        </nav>
+        <div class="plan-card">
+          <strong>Pro Plan</strong>
+          <small>Valid until May 24, 2025</small>
+          <button type="button">Manage Plan</button>
+        </div>
+        <div class="sidebar-user">
+          <span class="avatar mini"></span>
+          <div>
+            <strong>Hi, Admin</strong>
+            <small>Super Admin</small>
+          </div>
+        </div>
+        <button id="logoutButton" class="logout-button">Logout</button>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <button class="icon-button" aria-label="Menu">☰</button>
+          <div class="search-box">
+            <span>⌕</span>
+            <input type="search" placeholder="Search anything..." />
+          </div>
+          <div class="topbar-actions">
+            <button class="bell-button" aria-label="Notifications">●</button>
+            <div class="profile">
+              <span class="avatar"></span>
+              <div>
+                <strong>Hi, Admin</strong>
+                <small>Super Admin</small>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <section id="dashboard" class="view active-view">
+          <div class="suite-heading">
+            <div>
+              <h2>Dashboard Overview</h2>
+              <p>Monitor your live selling, orders, and automations in real-time.</p>
+            </div>
+            <button class="date-button">May 20, 2024</button>
+          </div>
+
+          <div class="overview-metrics">
+            <article class="overview-card red">
+              <span class="overview-icon">S</span>
+              <small>Total Sales (This Month)</small>
+              <strong id="todaySalesMetric">P0.00</strong>
+              <em id="salesHint">+18% vs last month</em>
+            </article>
+            <article class="overview-card orange">
+              <span class="overview-icon">O</span>
+              <small>Pending Orders</small>
+              <strong id="pendingOverviewMetric">0</strong>
+              <em>View all orders</em>
+            </article>
+            <article class="overview-card green">
+              <span class="overview-icon">P</span>
+              <small>Paid Orders</small>
+              <strong id="paidOverviewMetric">0</strong>
+              <em>View paid orders</em>
+            </article>
+            <article class="overview-card cyan">
+              <span class="overview-icon">I</span>
+              <small>Total Invoices</small>
+              <strong id="invoiceOverviewMetric">0</strong>
+              <em>View all invoices</em>
+            </article>
+            <article class="overview-card violet">
+              <span class="overview-icon">B</span>
+              <small>Total Items Sold</small>
+              <strong id="itemsSoldOverviewMetric">0</strong>
+              <em>View inventory</em>
+            </article>
+            <article class="overview-card blue">
+              <span class="overview-icon">F</span>
+              <small>Page Followers</small>
+              <strong id="fbFollowersMetric">5,678</strong>
+              <em>+220 this week</em>
+            </article>
+          </div>
+
+          <div class="suite-board">
+            <article class="suite-card post-source">
+              <div class="suite-card-header">
+                <h3>1. Facebook Post (Source)</h3>
+                <button type="button" data-view-shortcut="posts">View all posts</button>
+              </div>
+              <div class="facebook-post">
+                <div class="post-main-image">
+                  <span class="post-clothing jacket"></span>
+                </div>
+                <div class="post-copy">
+                  <div class="post-author">
+                    <span class="account-avatar mini"></span>
+                    <div>
+                      <strong class="fb-page-name">Ukay Online Shop</strong>
+                      <small>May 20, 2024 at 10:00 AM</small>
+                    </div>
+                  </div>
+                  <h4>Vintage Denim Jacket</h4>
+                  <p><b>Code:</b> JKT-001</p>
+                  <p>Excellent Condition</p>
+                  <p>Size: M</p>
+                  <p>Price: P280</p>
+                  <strong>MINE + COMMENT SOLD!</strong>
+                </div>
+                <div class="post-thumbs">
+                  <span class="table-thumb jacket"></span>
+                  <span class="table-thumb jeans"></span>
+                  <span class="table-thumb jacket"></span>
+                  <span class="more-thumb">+3</span>
+                </div>
+                <div class="post-engagement">
+                  <span>Likes 234</span>
+                  <span>128 Comments</span>
+                  <span>23 Shares</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="suite-card mined-comments">
+              <div class="suite-card-header">
+                <h3>2. Mined Comments (Auto Detected)</h3>
+                <span class="live-pill">Live</span>
+              </div>
+              <div class="mini-tabs">
+                <button class="active" type="button">All (23)</button>
+                <button type="button">Mines (12)</button>
+                <button type="button">Bidding (6)</button>
+                <button type="button">Others (5)</button>
+              </div>
+              <table class="compact-table">
+                <thead><tr><th>User</th><th>Comment</th><th>Time</th><th>Status</th></tr></thead>
+                <tbody id="dashboardCommentRows"></tbody>
+              </table>
+            </article>
+
+            <article class="suite-card messenger-card">
+              <div class="suite-card-header">
+                <div>
+                  <h3>4. Messenger (Chat)</h3>
+                  <small>Maria Santos</small>
+                </div>
+                <button type="button" data-view-shortcut="messenger">Assign</button>
+              </div>
+              <div class="dashboard-chat" id="dashboardChatThread"></div>
+              <div class="dashboard-message-box">
+                <input type="text" placeholder="Type a message..." />
+                <button type="button">Send</button>
+              </div>
+            </article>
+
+            <article class="suite-card flow-card">
+              <div class="suite-card-header">
+                <h3>3. Order & Payment Flow (Automated)</h3>
+              </div>
+              <div class="flow-steps">
+                <div><span>1</span><strong>Customer</strong><small>Comments "Mine"</small></div>
+                <i></i>
+                <div><span>2</span><strong>System</strong><small>Creates pending order</small></div>
+                <i></i>
+                <div><span>3</span><strong>Seller</strong><small>Confirms payment</small></div>
+                <i></i>
+                <div><span>4</span><strong>System</strong><small>Generates invoice</small></div>
+                <i></i>
+                <div><span>5</span><strong>Order</strong><small>Marked as PAID</small></div>
+              </div>
+              <table class="compact-table">
+                <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Price</th><th>Status</th><th>Payment Time</th></tr></thead>
+                <tbody id="dashboardFlowRows"></tbody>
+              </table>
+            </article>
+
+            <article class="suite-card invoice-preview">
+              <div class="suite-card-header">
+                <h3>5. Auto Invoice (Generated)</h3>
+                <button type="button" data-view-shortcut="invoices">View invoices</button>
+              </div>
+              <div id="dashboardInvoice"></div>
+            </article>
+
+            <article class="suite-card inventory-sync">
+              <div class="suite-card-header">
+                <h3>6. Inventory (Synced)</h3>
+                <button type="button" data-view-shortcut="inventory">View all</button>
+              </div>
+              <table class="compact-table">
+                <thead><tr><th>Item</th><th>Code</th><th>Stock</th><th>Status</th></tr></thead>
+                <tbody id="dashboardInventoryRows"></tbody>
+              </table>
+            </article>
+
+            <article class="suite-card recent-orders">
+              <div class="suite-card-header">
+                <h3>7. Recent Orders</h3>
+                <button type="button" data-view-shortcut="orders">View all orders</button>
+              </div>
+              <table class="compact-table">
+                <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Amount</th><th>Status</th></tr></thead>
+                <tbody id="dashboardOrderRows"></tbody>
+              </table>
+            </article>
+
+            <article class="suite-card automation-strip">
+              <div class="suite-card-header">
+                <h3>8. Automation Rules (Active)</h3>
+              </div>
+              <div id="dashboardAutomationRules" class="dashboard-automation-grid"></div>
+            </article>
+
+            <article class="suite-card why-suite">
+              <h3>Why UkayPro Business Suite?</h3>
+              <div>
+                <span><b>Save Time</b><small>Automate repetitive tasks</small></span>
+                <span><b>Increase Sales</b><small>Close more sales faster</small></span>
+                <span><b>Accurate Records</b><small>No more manual tracking</small></span>
+                <span><b>Happy Customers</b><small>Fast response and professional</small></span>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="liveSelling" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Live Selling</h2>
+              <p>Prepare live batches, selling codes, and item queue.</p>
+            </div>
+            <button id="startLiveButton" class="primary-button compact" type="button">Start Live Session</button>
+          </div>
+          <div class="live-grid">
+            <article class="panel live-stage">
+              <div class="panel-header">
+                <h3>Current Live Batch</h3>
+                <span id="liveStatus" class="status low">Preparing</span>
+              </div>
+              <div class="live-preview">
+                <span class="broadcast-dot"></span>
+                <div>
+                  <strong>UkayPro Evening Drop</strong>
+                  <small id="liveSummary">0 queued items</small>
+                </div>
+              </div>
+              <div class="live-stats">
+                <span><b id="liveQueueCount">0</b><small>Queued</small></span>
+                <span><b id="liveMineCount">0</b><small>Mines</small></span>
+                <span><b id="liveOrderCount">0</b><small>Orders</small></span>
+              </div>
+            </article>
+            <article class="panel">
+              <div class="panel-header">
+                <h3>Selling Script</h3>
+                <button id="copyLiveScript" type="button">Copy</button>
+              </div>
+              <p id="liveScript" class="script-box">MINE + item code to reserve. Payment cutoff is tonight, 10 PM.</p>
+            </article>
+          </div>
+          <article class="panel table-panel">
+            <div class="panel-header">
+              <h3>Item Queue</h3>
+              <button type="button">Auto arrange</button>
+            </div>
+            <table>
+              <thead><tr><th>Code</th><th>Item</th><th>Price</th><th>Qty</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="liveRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="posts" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Posts / Listings</h2>
+              <p>Auto-generated listing captions from synced inventory.</p>
+            </div>
+            <button id="generateCaptions" class="primary-button compact" type="button">Generate Captions</button>
+          </div>
+          <div id="postGrid" class="post-grid"></div>
+        </section>
+
+        <section id="comments" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Comment Monitor</h2>
+              <p>Auto-detect mine, bidding, and inquiry comments.</p>
+            </div>
+            <span class="live-pill">Live</span>
+          </div>
+          <div class="tabs">
+            <button class="active">All</button>
+            <button>Mines</button>
+            <button>Bids</button>
+            <button>Questions</button>
+          </div>
+          <article class="panel table-panel">
+            <table>
+              <thead><tr><th>Customer</th><th>Comment</th><th>Detected</th><th>Item</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="commentRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="orders" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Mines / Orders</h2>
+              <p>Reservations created from comments and POS checkout.</p>
+            </div>
+            <button type="button">Export Orders</button>
+          </div>
+          <div class="metric-grid four">
+            <article class="metric-card orange"><small>Pending Payment</small><strong id="pendingOrdersMetric">0</strong></article>
+            <article class="metric-card green"><small>Paid Orders</small><strong id="paidOrdersMetric">0</strong></article>
+            <article class="metric-card blue"><small>For Pickup</small><strong id="pickupOrdersMetric">0</strong></article>
+            <article class="metric-card purple"><small>Order Value</small><strong id="orderValueMetric">P0.00</strong></article>
+          </div>
+          <article class="panel table-panel">
+            <table>
+              <thead><tr><th>Order ID</th><th>Customer</th><th>Item</th><th>Amount</th><th>Source</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody id="orderRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="messenger" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Messenger</h2>
+              <p>Customer conversations with quick replies.</p>
+            </div>
+            <button type="button">View all</button>
+          </div>
+          <div class="messenger-layout">
+            <article class="panel chat-list" id="chatList"></article>
+            <article class="panel chat-window">
+              <div class="panel-header">
+                <h3 id="activeChatName">Maria Santos</h3>
+                <button id="sendQuickReply" type="button">Send Quick Reply</button>
+              </div>
+              <div id="chatThread" class="chat-thread"></div>
+              <div class="message-box">
+                <input id="messageInput" type="text" placeholder="Type a message..." />
+                <button id="sendMessage" class="primary-button compact" type="button">Send</button>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section id="inventory" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Inventory</h2>
+              <p>Home / Inventory</p>
+            </div>
+            <button id="openAddModal" class="primary-button compact">+ Add Item</button>
+          </div>
+          <div class="table-toolbar">
+            <div class="search-box compact-search"><span>⌕</span><input id="inventorySearch" type="search" placeholder="Search items..." /></div>
+            <button>Filter</button>
+            <button id="exportInventory">Export</button>
+          </div>
+          <article class="panel table-panel">
+            <table>
+              <thead>
+                <tr>
+                  <th>Image</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
+                  <th>Size</th>
+                  <th>Color</th>
+                  <th>Brand</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="inventoryRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="invoices" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Invoices</h2>
+              <p>Printable invoices from paid and completed orders.</p>
+            </div>
+            <button type="button">Download PDF</button>
+          </div>
+          <div id="invoiceGrid" class="invoice-grid"></div>
+        </section>
+
+        <section id="sales" class="view">
+          <div class="page-heading"><h2>POS / Sales</h2></div>
+          <div class="pos-grid">
+            <article class="panel product-panel">
+              <div class="search-box compact-search"><span>⌕</span><input id="posSearch" type="search" placeholder="Scan barcode or search item..." /></div>
+              <div id="posItems" class="pos-list"></div>
+            </article>
+            <article class="panel cart-panel">
+              <div class="panel-header">
+                <h3 id="cartTitle">Cart (0)</h3>
+                <button id="clearCart" type="button">Clear Cart</button>
+              </div>
+              <div id="cartItems" class="cart-items"></div>
+              <div class="cart-lines">
+                <p><span>Subtotal</span><b id="cartSubtotal">P0.00</b></p>
+                <p><span>Discount</span><b>10%</b></p>
+                <p class="discount"><span></span><b id="cartDiscount">-P0.00</b></p>
+                <p class="total"><span>Total</span><b id="cartTotal">P0.00</b></p>
+              </div>
+              <h4>Payment Method</h4>
+              <div class="payment-tabs">
+                <button type="button" class="active" data-payment="Cash">Cash</button>
+                <button type="button" data-payment="GCash">GCash</button>
+                <button type="button" data-payment="Maya">Maya</button>
+                <button type="button" data-payment="Card">Card</button>
+              </div>
+              <button id="processPayment" class="primary-button" type="button">Process Payment</button>
+            </article>
+          </div>
+        </section>
+
+        <section id="stock" class="view">
+          <div class="page-heading"><h2>Stock Monitoring</h2></div>
+          <div class="tabs">
+            <button class="active">All</button>
+            <button>Available</button>
+            <button>Reserved</button>
+            <button>Sold</button>
+            <button>Damaged</button>
+          </div>
+          <div class="metric-grid four">
+            <article class="metric-card green"><small>Available</small><strong>2,150 items</strong></article>
+            <article class="metric-card blue"><small>Reserved</small><strong>120 items</strong></article>
+            <article class="metric-card purple"><small>Sold</small><strong>8,450 items</strong></article>
+            <article class="metric-card red"><small>Damaged</small><strong>45 items</strong></article>
+          </div>
+          <article class="panel table-panel">
+            <table>
+              <thead><tr><th>Category</th><th>Available</th><th>Reserved</th><th>Sold</th><th>Damaged</th></tr></thead>
+              <tbody id="stockRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="reports" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Reports</h2>
+              <p>Sales Report</p>
+            </div>
+            <button>Export</button>
+          </div>
+          <div class="tabs">
+            <button class="active">Sales Report</button>
+            <button>Inventory Valuation</button>
+            <button>Fast-moving Items</button>
+            <button>Dead Stock</button>
+          </div>
+          <div class="metric-grid four">
+            <article class="metric-card blue"><small>Total Sales</small><strong id="reportSales">P0.00</strong><em>All transactions</em></article>
+            <article class="metric-card violet"><small>Total Orders</small><strong id="reportOrders">0</strong><em>Completed orders</em></article>
+            <article class="metric-card green"><small>Average Sale</small><strong id="reportAverage">P0.00</strong><em>Per order</em></article>
+            <article class="metric-card orange"><small>Items Sold</small><strong id="reportItemsSold">0</strong><em>Inventory movement</em></article>
+          </div>
+          <article class="panel wide">
+            <div class="panel-header">
+              <h3>Sales Over Time</h3>
+              <button>Daily</button>
+            </div>
+            <div class="line-chart report-chart">
+              <svg viewBox="0 0 760 270" role="img" aria-label="Sales report chart">
+                <path class="chart-fill" d="M20 210 L140 146 L260 183 L380 105 L500 88 L620 52 L740 92 L740 245 L20 245 Z"></path>
+                <path class="chart-line" d="M20 210 L140 146 L260 183 L380 105 L500 88 L620 52 L740 92"></path>
+                <g class="chart-dots">
+                  <circle cx="20" cy="210" r="6"></circle><circle cx="140" cy="146" r="6"></circle><circle cx="260" cy="183" r="6"></circle><circle cx="380" cy="105" r="6"></circle><circle cx="500" cy="88" r="6"></circle><circle cx="620" cy="52" r="6"></circle><circle cx="740" cy="92" r="6"></circle>
+                </g>
+              </svg>
+            </div>
+          </article>
+        </section>
+
+        <section id="customers" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Customers</h2>
+              <p>Profiles built from comments, orders, and transactions.</p>
+            </div>
+            <button type="button">Add Customer</button>
+          </div>
+          <article class="panel table-panel">
+            <table>
+              <thead><tr><th>Name</th><th>Contact</th><th>Orders</th><th>Total Spent</th><th>Tag</th></tr></thead>
+              <tbody id="customerRows"></tbody>
+            </table>
+          </article>
+        </section>
+
+        <section id="automation" class="view">
+          <div class="page-heading">
+            <div>
+              <h2>Automation</h2>
+              <p>Rules for comment detection, payment reminders, and invoices.</p>
+            </div>
+            <button id="runAutomations" class="primary-button compact" type="button">Run Now</button>
+          </div>
+          <div id="automationGrid" class="automation-grid"></div>
+        </section>
+
+        <section id="suppliers" class="view placeholder-view"><h2>Suppliers</h2><p>Supplier and bale shipment records are ready to connect here.</p></section>
+        <section id="users" class="view placeholder-view"><h2>Users</h2><p>Manage cashier, staff, and admin accounts here.</p></section>
+        <section id="analytics" class="view placeholder-view"><h2>Analytics</h2><p>Live selling trends, conversion rates, and customer behavior charts can be added here.</p></section>
+        <section id="settings" class="view placeholder-view"><h2>Settings</h2><p>Store profile, categories, sizes, and preferences can be configured here.</p></section>
+      </section>
+    </main>
+
+    <div id="modalBackdrop" class="modal-backdrop hidden">
+      <form class="item-modal">
+        <button id="closeModal" class="close-button" type="button">×</button>
+        <h2>Add New Item</h2>
+        <div class="modal-grid">
+          <section>
+            <label>Item Image</label>
+            <div class="upload-box">
+              <span>☁</span>
+              <strong>Click to upload</strong>
+              <small>PNG, JPG up to 5MB</small>
+            </div>
+            <div class="thumb-strip">
+              <span class="thumb jacket"></span><span class="thumb dress"></span><span class="thumb jeans"></span>
+            </div>
+          </section>
+          <section class="form-grid">
+            <label>Item Name <input name="name" placeholder="Enter item name" required /></label>
+            <label>Item Code / SKU <input name="sku" value="ITM-0006" required /></label>
+            <label>Category <select name="category" required><option value="">Select category</option><option>Tops</option><option>Bottoms</option><option>Dresses</option><option>Outerwear</option><option>Others</option></select></label>
+            <label>Brand <input name="brand" placeholder="Enter brand" /></label>
+            <label>Color <select name="color" required><option value="">Select color</option><option>Blue</option><option>Beige</option><option>Khaki</option><option>Black</option><option>Multi</option><option>White</option><option>Brown</option></select></label>
+            <label>Size <select name="size" required><option value="">Select size</option><option>XS</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>Free Size</option></select></label>
+            <label>Cost Price <input name="cost" type="number" min="0" value="0" /></label>
+            <label>Selling Price <input name="price" type="number" min="0" value="0" required /></label>
+            <label>Quantity <input name="qty" type="number" min="0" value="1" required /></label>
+            <label>Supplier / Bale No. <input name="supplier" placeholder="Enter bale / supplier" /></label>
+          </section>
+        </div>
+        <footer>
+          <button type="button" id="cancelModal">Cancel</button>
+          <button type="submit" class="primary-button compact">Save Item</button>
+        </footer>
+      </form>
+    </div>
+
+    <div id="signupBackdrop" class="modal-backdrop hidden">
+      <form id="signupForm" class="signup-modal">
+        <button id="closeSignup" class="close-button" type="button">×</button>
+        <h2>Create Account</h2>
+        <p class="modal-subtitle">Create your admin account and connect the Facebook Page you will manage.</p>
+        <section class="facebook-connect-panel">
+          <div>
+            <span class="fb-badge">f</span>
+            <div>
+              <strong>Facebook Page Setup</strong>
+              <small>Paste your page link, then click "Kunin sa URL".</small>
+            </div>
+          </div>
+          <div id="fbPagePreview" class="fb-page-preview">
+            <span class="account-avatar"></span>
+            <div>
+              <strong>Ukay Online Shop</strong>
+              <small>Facebook Page</small>
+            </div>
+          </div>
+        </section>
+        <div class="signup-grid">
+          <label>Full Name <input name="name" placeholder="Juan Dela Cruz" required /></label>
+          <label>Role
+            <select name="role" required>
+              <option>Admin</option>
+              <option>Cashier</option>
+              <option>Staff</option>
+            </select>
+          </label>
+          <label>Email Address <input name="email" type="email" placeholder="staff@ukaypro.com" required /></label>
+          <label class="field-group">Phone Number
+            <input id="signupPhone" name="phone" type="tel" inputmode="tel" placeholder="+639171234567" required />
+            <small id="phoneHint" class="field-hint">Format: +63 followed by 10 numbers.</small>
+          </label>
+          <label class="field-group">Password
+            <span class="password-field">
+              <input id="signupPassword" name="password" type="password" minlength="8" required />
+              <button class="password-toggle" type="button" data-toggle-password="signupPassword">Show</button>
+            </span>
+            <span class="password-strength">
+              <span id="passwordStrengthBar"></span>
+            </span>
+            <small id="passwordHint" class="field-hint">Use at least 8 characters with uppercase, number, and symbol.</small>
+          </label>
+          <label class="field-group">Confirm Password
+            <span class="password-field">
+              <input id="confirmSignupPassword" name="confirmPassword" type="password" minlength="8" required />
+              <button class="password-toggle" type="button" data-toggle-password="confirmSignupPassword">Show</button>
+            </span>
+            <small id="confirmPasswordHint" class="field-hint">Re-enter the same password.</small>
+          </label>
+          <label>Facebook Page URL <input id="fbPageUrl" name="fbPageUrl" type="url" placeholder="https://facebook.com/yourpage" required /></label>
+          <label>Facebook Page Name <input id="fbPageName" name="fbPageName" placeholder="Ukay Online Shop" required /></label>
+          <label>Page Category
+            <select id="fbPageCategory" name="fbPageCategory" required>
+              <option>Ukay-Ukay Store</option>
+              <option>Clothing Store</option>
+              <option>Thrift Shop</option>
+              <option>Online Seller</option>
+              <option>Retail Business</option>
+            </select>
+          </label>
+          <label>Page Followers <input id="fbPageFollowers" name="fbPageFollowers" type="number" min="0" value="0" /></label>
+        </div>
+        <div class="signup-actions-row">
+          <button id="extractFbPage" type="button">Kunin sa URL</button>
+          <button id="useDemoFbPage" type="button">Use Demo Page</button>
+        </div>
+        <p id="signupMessage" class="form-message"></p>
+        <footer>
+          <button type="button" id="cancelSignup">Cancel</button>
+          <button type="submit" class="primary-button compact">Create Account</button>
+        </footer>
+      </form>
+    </div>
+
+    <script src="./src/js/app.js"></script>
+  </body>
+</html>

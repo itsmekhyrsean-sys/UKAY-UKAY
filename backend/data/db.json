@@ -1,0 +1,68 @@
+{
+  "inventory": [
+    {
+      "id": "ITM-0001",
+      "sku": "ITM-0001",
+      "name": "Vintage Denim Jacket",
+      "category": "Outerwear",
+      "size": "M",
+      "color": "Blue",
+      "brand": "Levi's",
+      "qty": 12,
+      "cost": 280,
+      "price": 550,
+      "sold": 8,
+      "image": "jacket",
+      "supplier": "Bale A"
+    },
+    {
+      "id": "ITM-0002",
+      "sku": "ITM-0002",
+      "name": "Floral Midi Dress",
+      "category": "Dresses",
+      "size": "S",
+      "color": "Beige",
+      "brand": "Zara",
+      "qty": 8,
+      "cost": 210,
+      "price": 450,
+      "sold": 5,
+      "image": "dress",
+      "supplier": "Bale B"
+    }
+  ],
+  "transactions": [
+    {
+      "invoice": "INV-2024-0520-001",
+      "customer": "Walk-in Customer",
+      "items": 3,
+      "total": 1250,
+      "payment": "Cash",
+      "date": "May 20, 2024",
+      "status": "Completed"
+    }
+  ],
+  "comments": [
+    {
+      "id": "CMT-0001",
+      "customer": "Maria Santos",
+      "comment": "mine JKT-001",
+      "type": "Mine",
+      "itemSku": "ITM-0001",
+      "time": "10:01 AM",
+      "status": "Pending"
+    }
+  ],
+  "orders": [],
+  "messages": [],
+  "automations": [],
+  "users": [
+    {
+      "id": "USR-0001",
+      "name": "Admin",
+      "email": "admin@ukaypro.com",
+      "phone": "",
+      "role": "Admin"
+    }
+  ]
+}
